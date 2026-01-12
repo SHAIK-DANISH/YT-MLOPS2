@@ -1,0 +1,24 @@
+1.pip install mlflow
+2.mlflow ui
+3. open your browser with the given address.
+4. run the file1.py
+
+5. refresh the mlflow ui page to see the new experiment and runs.
+6. Check the parameters, metrics, artifacts, and tags logged with the run.
+7. You can also compare different runs by selecting them and clicking on the "Compare" button.
+8. Experiment- By using differnt algorithms, Runs - By using different parameters within an experiment.
+
+9. see Day.6 - mlflow server Archetecture 
+
+10. For Collabrative Work: Use a centralised database and artifact store like AWS S3, Azure Blob Storage, or Google Cloud Storage to store your MLflow tracking data and artifacts. This allows multiple team members to access and log experiments from different machines.
+11. Set up a shared MLflow Tracking Server that all team members can connect to. This server will handle logging and querying of experiments.
+12. we can use AWS or DagsHub for collabrative work.(to host mlflow tracking server and artifact store)
+13. add code below 
+import DagsHub
+dashub.init(repo="Your-Repo-Name", tracking_uri="Your-Tracking-URI", repo_name="Your-Repo-Name")
+mlflow.set_tracking_uri(DagsHub.get_tracking_uri())
+
+File1- for local
+file2- for collabrative work using DagsHub
+autolog - for auto logging of parameters and metrics.
+hypertune1 - for hyperparameter tuning using mlflow and sklearn.
