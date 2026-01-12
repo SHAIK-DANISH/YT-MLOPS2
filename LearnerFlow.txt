@@ -22,3 +22,23 @@ File1- for local
 file2- for collabrative work using DagsHub
 autolog - for auto logging of parameters and metrics.
 hypertune1 - for hyperparameter tuning using mlflow and sklearn.
+
+
+to log all the models
+1. add code below in hypertune1.py 
+     with mlflow.start_run() as parent:
+          # log all the child runs
+          for i in range(len(grid_search.cv_results_['params'])):
+              with mlflow.start_run(nested=True) as child:
+                  mlflow.log_params(grid_search.cv_results_['params'][i])
+                  mlflow.log_metric('mean_test_score', grid_search.cv_results_['mean_test_score'][i])
+                  mlflow.log_metric('std_test_score', grid_search.cv_results_['std_test_score'][i])
+                  # log the model for each child run
+                  mlflow.sklearn.log_model(grid_search.cv_results_['params'][i], "model")
+
+2. This will create a parent run that contains all the child runs for each hyperparameter combination tried during the grid search. Each child run will log its own parameters, metrics, and model.
+3. compare the runs in mlflow ui.
+
+
+Model Registry:  Dev(None- you are creating the model), Staging(testing the model), Production(using the model in real time), retire(not better model)), Archived(old models)
+1.
