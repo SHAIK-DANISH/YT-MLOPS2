@@ -40,5 +40,5 @@ to log all the models
 3. compare the runs in mlflow ui.
 
 
-Model Registry:  Dev(None- you are creating the model), Staging(testing the model), Production(using the model in real time), retire(not better model)), Archived(old models)
-1.
+Model Registry:  Dev(None- you are creating the model), Staging(testing the model), Production(using the model in real time), retire(not better model)/Archived(old models)
+1.  mlflow models register -m "path to model" -n "model name"
